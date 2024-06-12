@@ -3,14 +3,17 @@ from PyQt6.QtCore import QObject, QUrl, pyqtSlot
 from PyQt6.QtGui import QGuiApplication
 from PyQt6.QtQml import QQmlApplicationEngine
 
+
 class Backend(QObject):
     def __init__(self):
         QObject.__init__(self)
 
     @pyqtSlot(str, str)
-    def teste(self, salarioInput, descontoInput):
+    def init(self, salarioInput, descontoInput):
+        tela = {'salario':salarioInput, 'desconto': descontoInput}
         print(f"Salário digitado: {salarioInput}")
         print(f"Desconto digitado: {descontoInput}")
+        print(tela)
 
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
@@ -25,3 +28,4 @@ if __name__ == "__main__":
         sys.exit(-1)
 
     sys.exit(app.exec())
+

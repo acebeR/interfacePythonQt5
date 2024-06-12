@@ -71,7 +71,7 @@ ApplicationWindow {
             height: 40
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
-                backend.teste(salarioInput, descontoInput) // Chama a função teste() do backend Python com os dois argumentos
+                backend.init(salarioInput, descontoInput) // Chama a função teste() do backend Python com os dois argumentos
             }
         }
     }
