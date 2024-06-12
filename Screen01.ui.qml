@@ -8,6 +8,9 @@ ApplicationWindow {
     height: 400
     title: "Screen 01"
 
+    property string salarioInput: "" // Propriedade para armazenar o texto do salário
+    property string descontoInput: "" // Propriedade para armazenar o texto do desconto
+
     ColumnLayout {
         anchors.centerIn: parent
 
@@ -30,8 +33,12 @@ ApplicationWindow {
             Layout.alignment: Qt.AlignHCenter
 
             TextInput {
+                id: salarioTextInput
                 width: parent.width
                 height: parent.height
+                onTextChanged: {
+                    salarioInput = text // Atualiza a propriedade quando o texto muda
+                }
             }
         }
 
@@ -48,19 +55,23 @@ ApplicationWindow {
             Layout.alignment: Qt.AlignHCenter
 
             TextInput {
+                id: descontoTextInput
                 width: parent.width
                 height: parent.height
+                onTextChanged: {
+                    descontoInput = text // Atualiza a propriedade quando o texto muda
+                }
             }
         }
 
         Button {
             text: "Calcular"
+            id: btnCalcular
             width: 100
             height: 40
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
-                // Coloque aqui a lógica para calcular o salário com o desconto
-                console.log("Botão Calcular clicado!")
+                backend.teste(salarioInput, descontoInput) // Chama a função teste() do backend Python com os dois argumentos
             }
         }
     }
