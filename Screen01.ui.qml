@@ -9,7 +9,7 @@ ApplicationWindow {
     title: "Screen 01"
 
     property string salarioInput: "" // Propriedade para armazenar o texto do salário
-    property string descontoInput: "" // Propriedade para armazenar o texto do desconto
+    property string resultadoTexto: "" // Propriedade para exibir o resultado
 
     ColumnLayout {
         anchors.centerIn: parent
@@ -58,9 +58,6 @@ ApplicationWindow {
                 id: descontoTextInput
                 width: parent.width
                 height: parent.height
-                onTextChanged: {
-                    descontoInput = text // Atualiza a propriedade quando o texto muda
-                }
             }
         }
 
@@ -71,8 +68,14 @@ ApplicationWindow {
             height: 40
             Layout.alignment: Qt.AlignHCenter
             onClicked: {
-                backend.init(salarioInput, descontoInput) // Chama a função teste() do backend Python com os dois argumentos
+                backend.calcular(salarioTextInput.text, descontoTextInput.text)
             }
+        }
+
+        Text {
+            text: backend.resultadoTexto
+            font.pixelSize: 20
+            Layout.alignment: Qt.AlignHCenter
         }
     }
 }
